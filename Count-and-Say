@@ -1,0 +1,52 @@
+Question link :https://www.interviewbit.com/problems/count-and-say/
+
+The count-and-say sequence is the sequence of integers beginning as follows:
+
+1, 11, 21, 1211, 111221, ...
+1 is read off as one 1 or 11.
+11 is read off as two 1s or 21.
+
+21 is read off as one 2, then one 1 or 1211.
+
+Given an integer n, generate the nth sequence.
+
+Note: The sequence of integers will be represented as a string.
+
+Example:
+
+if n = 2,
+the sequence is 11.
+
+Code:-
+
+string Solution::countAndSay(int A) 
+{
+    string str = "1";                                     // first word
+    string temp_str ;
+    
+    for(int j=0;j<A-1;j++)                                // loop for finding nth word
+    {
+    int i = 0;
+    char curr_char ; 
+    
+      while(str[i]!='\0')                                // loop for finding next word
+     {
+      int ctr=1;
+      curr_char = str[i];
+      ++i;
+           while( curr_char == str[i] && str[i]!='\0')  // counting similiar contiguous elements
+           {
+           ++i;
+           ctr++;
+           }
+      temp_str.append(to_string(ctr));                  // convert interger var to string and append
+      temp_str +=curr_char;
+      curr_char = temp_str[i] ;
+    
+      }
+    
+    str = temp_str ;
+    temp_str="";
+    } 
+    return str ;
+}
