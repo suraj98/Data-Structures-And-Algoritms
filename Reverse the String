@@ -1,0 +1,47 @@
+Link :- https://www.interviewbit.com/problems/reverse-the-string/
+
+Given an input string, reverse the string word by word.
+
+Example:
+
+Given s = "the sky is blue",
+return "blue is sky the".
+
+Solution:-
+
+void Solution::reverseWords(string &A) {
+    
+    long long int  len = A.length();
+    len=len-1;
+    string ans ;
+
+    long long int curr_beg;
+    long long int curr_end;
+    long long int temp ;
+    while( len >=0 )
+    {
+        curr_beg = len ;                  
+        curr_end = len ;                             // to position curr_end , end to word 
+        while(!isspace(A[curr_beg]) && curr_beg>=0)  // to position curr_beg at start of word from end;
+        {
+            curr_beg--;
+        }
+        temp= cur_beg+1;
+
+        while(temp<=curr_end)                       // insert word in ans beggining from curr_beg to curr_end
+        {
+            ans+=A[temp] ;
+            curr_end++;
+        }
+        while(isspace(A[curr_beg]) && curr_beg>=0)  // Insert Space in ans 
+        {
+            ans+=" ";
+            curr_beg--;
+        }
+        len=curr_beg;                               // New end of word
+    }
+
+   A=ans;
+   
+  
+}
