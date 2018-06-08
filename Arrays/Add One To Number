@@ -1,0 +1,53 @@
+/*
+Question line :https://www.interviewbit.com/problems/add-one-to-number/
+Given a non-negative number represented as an array of digits,
+
+add 1 to the number ( increment the number represented by the digits ).
+The digits are stored such that the most significant digit is at the head of the list.
+Example:
+If the vector has [1, 2, 3]
+the returned vector should be [1, 2, 4]
+as 123 + 1 = 124.
+
+*/
+
+
+vector<int> Solution::plusOne(vector<int> &A) 
+{
+    int len = A.size()-1;
+    int carry = 0 ;
+    A[len] +=1 ;
+    for(int i=len;i>=0;i--)
+      {
+          if( A[i]<= 9)
+          {
+              break;
+          }
+          else
+          {
+              A[i]=0;
+              carry = 1;
+              if(i!=0)
+                {
+                  A[i-1] += carry ;
+                  carry=0;
+                }
+          }
+       }
+    
+    if(carry != 0)
+      {
+          auto it = A.begin();
+          it = A.insert(it, 1);
+      }
+    int i = 0 ;
+    while(A[i]==0)
+      {
+          i++;
+      }
+    if(i>0)
+      {
+          A.erase(A.begin(), A.begin() + i);
+      } 
+    return A;
+}
